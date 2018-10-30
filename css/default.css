@@ -26,10 +26,11 @@ body {
     text-transform: uppercase;
 }
 .title h3 {
-    font-size: 32px;
+    font-size: 28px;
     font-style: normal;
     font-weight: 300;
-    letter-spacing: 2px;
+    letter-spacing: 4px;
+    padding-bottom: 10px;
 }
 .row {
     text-transform: uppercase;
