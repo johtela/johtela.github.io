@@ -10,7 +10,7 @@ body {
     to { text-shadow: 0 0 32px #f66; }
 }
 .title {
-    padding: 15px;
+    padding: 4px;
     text-align: center;
     font-family: Gill Sans, Gill Sans MT, Calibri, sans-serif;
     background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/HAL9000.svg/256px-HAL9000.svg.png);
@@ -19,11 +19,11 @@ body {
     text-shadow: 0 0 32px #f66; 
 }
 .title h1 {
-    text-transform: uppercase;
     font-size: 72px;
     font-style: normal;
     font-weight: 300;
     letter-spacing: 4px;
+    text-transform: uppercase;
 }
 .title h3 {
     font-size: 32px;
@@ -32,15 +32,16 @@ body {
     letter-spacing: 2px;
 }
 .row {
+    text-transform: uppercase;
     overflow: auto;
 }
 .left-pane {
-    padding: 16px 16px 16px 128px;
+    padding: 0px 48px 16px 128px;
     float: left;
     width: 40%;
 }
 .right-pane {
-    padding: 16px 128px 16px 16px;
+    padding: 0px 128px 16px 48px;
     float: left;
     width: 40%;
 }
@@ -64,7 +65,6 @@ body {
     height: 250px;
     color: white;
     border-radius: 8px;
-    text-transform: uppercase;
 }
 .monitor h1 {
     margin: 0;
@@ -89,7 +89,6 @@ body {
     font-family: Lekton;
     font-size: 15px;
     line-height: 17px;
-    text-transform: uppercase;
     text-shadow: 0 0 3px #888;
     overflow: hidden;     
 }
@@ -107,7 +106,7 @@ body {
     box-shadow: 4px 4px 16px #031;
 }
 .blue {
-    text-shadow: 0 0 12px#AFA;     
+    text-shadow: 0 0 12px#AAF;     
     background-color: #025;
     background-image: linear-gradient(150deg, #013, #025, #04C);
     box-shadow: 4px 4px 16px #013;
@@ -121,21 +120,71 @@ body {
 .main {
     float: left;
     width: 20%;
-    padding: 0 20px;
+    margin: 8px 0 0 0;
+    padding: 0px 16px;
+    background-image: linear-gradient(-45deg, #000, #111, #000);
+    border-radius: 8px;
+    box-shadow: 0px 0px 8px #111;
+    font-family: 'Michroma', sans-serif;
+    font-size: 12px;
+    text-align: center;
+    color: #888;
+}   
+.titlebar {
+    padding-top: 4px;
+    height: 16px; 
+    border-bottom: 4px solid #888;
 }
+.titlebar em {
+    padding: 0 10px;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 900;
+    background-image: linear-gradient(45deg, #000, #111);
+}
+
+.button {
+    margin: 20px 0px;
+    display: block;
+    overflow: hidden;
+    padding: 12px 8px;
+    font-weight: 900;
+    text-decoration: none;
+    text-shadow: 0 0 4px #CCF;
+    color: #222;
+    background-image: radial-gradient(rgb(167, 239, 248), rgb(77, 126, 133));
+    border-radius: 4px; 
+    box-shadow: 4px 4px 16px #014;
+}
+.button:hover {
+    background-image: radial-gradient(rgb(215, 246, 250), rgb(138, 211, 223));
+    box-shadow: 4px 4px 20px #248;
+}
+.button:active {
+    transform: translateY(1px);
+    background-image: radial-gradient(rgb(248, 167, 167), rgb(133, 77, 77));
+    box-shadow: 4px 4px 20px #820;
+}
+
 @media only screen and (max-width:1250px) {
     .left-pane, .right-pane {
-        padding: 16px 64px;
+        padding: 0px 48px 16px 48px;
     }
 }
 @media only screen and (max-width:1000px) {
     .left-pane, .right-pane {
-        padding: 16px;
+        padding: 0px 16px 16px 16px;
     }
 }
 @media only screen and (max-width:750px) {
     .left-pane, .right-pane, .main {
         width:100%;
-        padding: 16px 64px;
+        padding: 16px 128px 0px 128px;
+    }
+}
+@media only screen and (max-width:600px) {
+    .left-pane, .right-pane, .main {
+        width:100%;
+        padding: 16px 64px 0px 64px;
     }
 }
