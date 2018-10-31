@@ -129,7 +129,16 @@ body {
     transform: scale(1.1) translate(2%);
 }
 .monitor-content:active {
-    animation: flicker 50ms ease 0s 7 backwards;
+    animation: flicker 50ms ease 0s infinite forwards;
+}
+.flicker-slow {
+    animation: flicker 200ms ease 0s infinite forwards;
+}
+.flicker-medium {
+    animation: flicker 100ms ease 0s infinite forwards;
+}
+.flicker-fast {
+    animation: flicker 50ms ease 0s infinite forwards;
 }
 
 /* Button menu panes */

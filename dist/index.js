@@ -1,6 +1,9 @@
 import * as $ from 'jquery';
-$(document).ready(function () {
-    var ng = $("#nuget");
-    // ng.replaceWith ('<canvas id="ngCanvas"></canvas>');
-});
+import { Display } from './display';
+function animateMonitors() {
+    $(".monitor-content").map((i, e) => new Display(e)).each((i, d) => {
+        d.run();
+    });
+}
+$(document).ready(animateMonitors);
 //# sourceMappingURL=index.js.map

@@ -1,7 +1,12 @@
 import * as $ from 'jquery';
+import { Display } from './display';
 
-$(document).ready (() =>
+function animateMonitors ()
 {
-    let ng = $("#nuget");
-    // ng.replaceWith ('<canvas id="ngCanvas"></canvas>');
-})
+    $(".monitor-content").map ((i, e) => new Display (e)).each ((i, d) => 
+    {
+        d.run ();
+    });
+}
+
+$(document).ready (animateMonitors)
