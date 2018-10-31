@@ -5,10 +5,9 @@ body {
     background-image: linear-gradient(-45deg, #222, #000, #000);
     color: white;
 }
-@keyframes text-glow {
-    from { text-shadow: 0 0 16px #F22; }
-    to { text-shadow: 0 0 32px #f66; }
-}
+
+/* Title pane */
+
 .title {
     padding: 4px;
     text-align: center;
@@ -22,7 +21,7 @@ body {
     font-size: 72px;
     font-style: normal;
     font-weight: 300;
-    letter-spacing: 4px;
+    letter-spacing: 8px;
     text-transform: uppercase;
 }
 .title h3 {
@@ -32,6 +31,9 @@ body {
     letter-spacing: 4px;
     padding-bottom: 10px;
 }
+
+/* Rows and left/middle/right panes */
+
 .row {
     text-transform: uppercase;
     overflow: auto;
@@ -47,24 +49,24 @@ body {
     width: 40%;
 }
 
-@keyframes red-flicker {
+/* Monitor screens */
+
+@keyframes flicker {
     from {
         color: white;
-        text-shadow: 0 0 12px#FAA;     
+        text-shadow: 0 0 12px#AAA;     
     }
     to { 
         color: #FFFFFF00;
-        text-shadow: 0 0 0px #FFAAAA00; 
+        text-shadow: 0 0 0px #AAAAAA00; 
     }
 }
 
 .monitor {
     padding: 16px;
-    font-family: 'Michroma', sans-serif;
     display: block;
     width: 100%;
     height: 250px;
-    color: white;
     border-radius: 8px;
 }
 .monitor h1 {
@@ -73,7 +75,6 @@ body {
     font-weight: 900;
     letter-spacing: 24px;
     text-align: center;
-
 }
 .monitor p {
     padding: 48px 0px 0px 32px;
@@ -82,7 +83,6 @@ body {
     font-weight: 900;
     letter-spacing: 2px;
     text-align: left;
-
 }
 .monitor pre {
     margin: 0;
@@ -98,7 +98,6 @@ body {
     background-color: #500;
     background-image: linear-gradient(150deg, #300, #500, #C00);
     box-shadow: 4px 4px 16px #300;
-    animation: red-flicker 50ms ease 2s 17 forwards;
 }
 .green {
     text-shadow: 0 0 12px#AFA;     
@@ -118,7 +117,24 @@ body {
     background-image: linear-gradient(150deg, #301, #502, #C04);
     box-shadow: 4px 4px 16px #301;
 }
-.main {
+.monitor-content {
+    display: block;
+    font-family: 'Michroma', sans-serif;
+    font-style: normal;
+    text-decoration: none;
+    color: white;
+    transition: transform 0.2s;
+}
+.monitor-content:hover {
+    transform: scale(1.1) translate(2%);
+}
+.monitor-content:active {
+    animation: flicker 50ms ease 0s 7 backwards;
+}
+
+/* Button menu panes */
+
+.buttonpane {
     float: left;
     width: 20%;
     margin: 8px 0 0 0;
@@ -167,6 +183,27 @@ body {
     box-shadow: 4px 4px 20px #820;
 }
 
+/* Footer */
+
+.footer {
+    color: #AAA;
+    text-align: center;
+    font-family: Gill Sans, Gill Sans MT, Calibri, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    letter-spacing: 2px;
+    padding-top: 8px;
+    padding-bottom: 4px;
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+}
+
+/* Responsive layout  */
+
 @media only screen and (max-width:1250px) {
     .left-pane, .right-pane {
         padding: 0px 48px 16px 48px;
@@ -178,13 +215,13 @@ body {
     }
 }
 @media only screen and (max-width:750px) {
-    .left-pane, .right-pane, .main {
+    .left-pane, .right-pane, .buttonpane {
         width:100%;
         padding: 16px 128px 0px 128px;
     }
 }
 @media only screen and (max-width:600px) {
-    .left-pane, .right-pane, .main {
+    .left-pane, .right-pane, .buttonpane {
         width:100%;
         padding: 16px 64px 0px 64px;
     }

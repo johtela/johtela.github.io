@@ -1,0 +1,22 @@
+{
+  "name": "johtela.github.io",
+  "version": "1.0.0",
+  "description": "Tommi Johtela personal homepage",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "author": "Tommi Johtela",
+  "license": "ISC",
+  "dependencies": {
+    "@types/jquery": "^3.3.22",
+    "jquery": "^3.3.1"
+  },
+  "devDependencies": {
+    "ts-loader": "^5.3.0",
+    "typescript": "^3.1.4",
+    "webpack": "^4.23.1",
+    "webpack-cli": "^3.1.2"
+  }
+}
