@@ -2,6 +2,9 @@ import * as $ from 'jquery';
 
 export class Display
 {
+    protected readonly msInSec: number = 1000;
+    protected readonly msInMin: number = this.msInSec * 60;
+
     private content: HTMLElement;
     protected canvas: HTMLCanvasElement;
 
@@ -18,14 +21,14 @@ export class Display
     
     protected async render ()
     {
-        await this.delay (15000);
+        await this.delay (15 * this.msInSec);
     }
 
     public async run ()
     {
         while (true)
         {
-            let wait = Math.random () * 60000;
+            let wait = Math.random () * this.msInMin;
             await this.delay (wait);
             let cont = $(this.content);
             await this.flickerEffect(cont);
