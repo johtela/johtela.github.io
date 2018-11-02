@@ -1,0 +1,183 @@
+{
+    "@context": {
+        "@vocab": "http://schema.nuget.org/schema#",
+        "@base": "https://api.nuget.org/v3/registration3/"
+    },
+    "totalHits": 4,
+    "lastReopen": "2018-11-02T13:21:38.3073585Z",
+    "index": "v3-lucene2-v2v3-20171018",
+    "data": [
+        {
+            "@id": "https://api.nuget.org/v3/registration3/extensioncord/index.json",
+            "@type": "Package",
+            "registration": "https://api.nuget.org/v3/registration3/extensioncord/index.json",
+            "id": "ExtensionCord",
+            "version": "1.1.3",
+            "description": "Extensions for standard .NET types.",
+            "summary": "",
+            "title": "ExtensionCord",
+            "iconUrl": "https://johtela.github.io/ExtensionCord/images/extension-cord.png",
+            "licenseUrl": "https://johtela.github.io/ExtensionCord/License.html",
+            "projectUrl": "https://johtela.github.io/ExtensionCord/",
+            "tags": [
+                "c#",
+                ".net"
+            ],
+            "authors": [
+                "Tommi Johtela"
+            ],
+            "totalDownloads": 314,
+            "verified": false,
+            "versions": [
+                {
+                    "version": "1.0.2",
+                    "downloads": 120,
+                    "@id": "https://api.nuget.org/v3/registration3/extensioncord/1.0.2.json"
+                },
+                {
+                    "version": "1.1.0",
+                    "downloads": 94,
+                    "@id": "https://api.nuget.org/v3/registration3/extensioncord/1.1.0.json"
+                },
+                {
+                    "version": "1.1.3",
+                    "downloads": 100,
+                    "@id": "https://api.nuget.org/v3/registration3/extensioncord/1.1.3.json"
+                }
+            ]
+        },
+        {
+            "@id": "https://api.nuget.org/v3/registration3/linqcheck/index.json",
+            "@type": "Package",
+            "registration": "https://api.nuget.org/v3/registration3/linqcheck/index.json",
+            "id": "LinqCheck",
+            "version": "1.1.0",
+            "description": "Property based testing library for C#. Write properties as Linq expressions.",
+            "summary": "",
+            "title": "LinqCheck",
+            "iconUrl": "https://johtela.github.io/LinqCheck/images/LinqCheck2.png",
+            "licenseUrl": "https://johtela.github.io/LinqCheck/License.html",
+            "projectUrl": "https://johtela.github.io/LinqCheck/",
+            "tags": [
+                "c#",
+                ".net",
+                "property-based-testing",
+                "quickcheck"
+            ],
+            "authors": [
+                "Tommi Johtela"
+            ],
+            "totalDownloads": 174,
+            "verified": false,
+            "versions": [
+                {
+                    "version": "1.0.2",
+                    "downloads": 97,
+                    "@id": "https://api.nuget.org/v3/registration3/linqcheck/1.0.2.json"
+                },
+                {
+                    "version": "1.1.0",
+                    "downloads": 77,
+                    "@id": "https://api.nuget.org/v3/registration3/linqcheck/1.1.0.json"
+                }
+            ]
+        },
+        {
+            "@id": "https://api.nuget.org/v3/registration3/literatecs.templates.literatelib.csharp/index.json",
+            "@type": "Package",
+            "registration": "https://api.nuget.org/v3/registration3/literatecs.templates.literatelib.csharp/index.json",
+            "id": "LiterateCS.Templates.LiterateLib.CSharp",
+            "version": "1.0.0",
+            "description": "Creates a .NET Standard library with files needed by LiterateCS included.",
+            "summary": "",
+            "title": "LiterateCS.Templates.LiterateLib.CSharp",
+            "tags": [
+                ".net",
+                "csharp",
+                "literate-programming"
+            ],
+            "authors": [
+                "Tommi Johtela"
+            ],
+            "totalDownloads": 150,
+            "verified": false,
+            "versions": [
+                {
+                    "version": "1.0.0",
+                    "downloads": 150,
+                    "@id": "https://api.nuget.org/v3/registration3/literatecs.templates.literatelib.csharp/1.0.0.json"
+                }
+            ]
+        },
+        {
+            "@id": "https://api.nuget.org/v3/registration3/literatecs/index.json",
+            "@type": "Package",
+            "registration": "https://api.nuget.org/v3/registration3/literatecs/index.json",
+            "id": "LiterateCS",
+            "version": "1.0.38",
+            "description": "Literate programming tool for C#.",
+            "summary": "",
+            "title": "LiterateCS",
+            "iconUrl": "https://johtela.github.io/LiterateCS/images/favicon.ico",
+            "licenseUrl": "https://johtela.github.io/LiterateCS/License.html",
+            "projectUrl": "https://johtela.github.io/LiterateCS/",
+            "tags": [
+                ".net",
+                "csharp",
+                "literate-programming"
+            ],
+            "authors": [
+                "Tommi Johtela"
+            ],
+            "totalDownloads": 559,
+            "verified": false,
+            "versions": [
+                {
+                    "version": "1.0.0",
+                    "downloads": 82,
+                    "@id": "https://api.nuget.org/v3/registration3/literatecs/1.0.0.json"
+                },
+                {
+                    "version": "1.0.11",
+                    "downloads": 83,
+                    "@id": "https://api.nuget.org/v3/registration3/literatecs/1.0.11.json"
+                },
+                {
+                    "version": "1.0.16",
+                    "downloads": 84,
+                    "@id": "https://api.nuget.org/v3/registration3/literatecs/1.0.16.json"
+                },
+                {
+                    "version": "1.0.19",
+                    "downloads": 54,
+                    "@id": "https://api.nuget.org/v3/registration3/literatecs/1.0.19.json"
+                },
+                {
+                    "version": "1.0.20",
+                    "downloads": 52,
+                    "@id": "https://api.nuget.org/v3/registration3/literatecs/1.0.20.json"
+                },
+                {
+                    "version": "1.0.22",
+                    "downloads": 57,
+                    "@id": "https://api.nuget.org/v3/registration3/literatecs/1.0.22.json"
+                },
+                {
+                    "version": "1.0.23",
+                    "downloads": 61,
+                    "@id": "https://api.nuget.org/v3/registration3/literatecs/1.0.23.json"
+                },
+                {
+                    "version": "1.0.37",
+                    "downloads": 46,
+                    "@id": "https://api.nuget.org/v3/registration3/literatecs/1.0.37.json"
+                },
+                {
+                    "version": "1.0.38",
+                    "downloads": 40,
+                    "@id": "https://api.nuget.org/v3/registration3/literatecs/1.0.38.json"
+                }
+            ]
+        }
+    ]
+}

@@ -1,20 +1,19 @@
 import * as $ from 'jquery';
 import { Display } from './display';
+import { NugetDisplay } from './nug-display';
 
 let displayMap = {
-    nuget: (e: HTMLElement) => new Display (e),
-    git: (e: HTMLElement) => new Display (e),
-    linkedin: (e: HTMLElement) => new Display (e)
+    nuget: (e: HTMLElement) => new NugetDisplay(e, "Tommi Johtela"),
+    git: (e: HTMLElement) => new Display(e),
+    linkedin: (e: HTMLElement) => new Display(e)
 }
 
-function animateMonitors ()
-{
+function animateMonitors() {
     $(".monitor-content")
-        .map ((i, e) => displayMap[e.id](e))
-        .each ((i, d) => 
-        {
-            d.run ();
+        .map((i, e) => displayMap[e.id](e))
+        .each((i, d) => {
+            d.run();
         });
 }
 
-$(document).ready (animateMonitors)
+$(document).ready(animateMonitors)
