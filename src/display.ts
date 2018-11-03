@@ -1,8 +1,8 @@
 import * as $ from 'jquery';
 
-const canvasHeight = 222;
-const msInSec = 1000;
-const msInMin = msInSec * 60;
+export const canvasHeight = 222;
+export const msInSec = 1000;
+export const msInMin = msInSec * 60;
 
 export class Display {
     private content: HTMLElement;
@@ -25,7 +25,7 @@ export class Display {
     protected setCtxStyle(ctx: CanvasRenderingContext2D) {
         ctx.font = "15px Lekton";
         ctx.fillStyle = "#DDD";
-        ctx.strokeStyle = "#FFF";
+        ctx.strokeStyle = "#DDD";
     }
 
     protected async drawTerminalText(ctx: CanvasRenderingContext2D,
@@ -36,47 +36,13 @@ export class Display {
         ctx.fillText(text.toUpperCase(), x, y);
     }
 
-    protected async drawAxis(ctx: CanvasRenderingContext2D) {
-        let w = this.canvas.width - 3;
-        let h = canvasHeight - 3;
-        ctx.beginPath();
-        ctx.moveTo(0, 2);
-        ctx.lineTo(2, 0);
-        ctx.lineTo(4, 2);
-        ctx.moveTo(2, 0);
-        ctx.lineTo(2, h);
-        ctx.lineTo(w, h);
-        ctx.lineTo(w - 2, h - 2);
-        ctx.moveTo(w, h);
-        ctx.lineTo(w - 2, h + 2);
-        ctx.stroke();
-    }
-
-    protected async drawLineGraphs(ctx: CanvasRenderingContext2D,
-        series: number[][]) {
-        let maxx = Math.max(...series.map(s => s.length));
-        let dx = this.canvas.width / maxx;
-        let maxvals = series.map(s => Math.max(...s));
-        let maxy = Math.max(...maxvals);
-        let scaley = canvasHeight / maxy;
-        for (let i = 0; i < series.length; i++) {
-            ctx.beginPath();
-            ctx.moveTo(0, canvasHeight - (series[i][0] * scaley));
-            await this.delay(msInSec);
-            for (let j = 0; j < series[i].length; j++) {
-                ctx.lineTo(j * dx, canvasHeight - (series[i][j] * scaley))
-            }
-            ctx.stroke();
-        }
-    }
-
     protected async render() {
         await this.delay(15 * msInSec);
     }
 
     public async run() {
         while (true) {
-            let wait = Math.random() * msInSec * 5;
+            let wait = Math.random() * msInMin;
             await this.delay(wait);
             let cont = $(this.content);
             await this.flickerEffect(cont);

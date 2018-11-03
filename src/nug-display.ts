@@ -1,4 +1,4 @@
-import { Display } from './display';
+import { canvasHeight, msInSec, Display } from './display';
 
 interface PackageVersion {
     version: string;
@@ -35,7 +35,9 @@ export class NugetDisplay extends Display {
             await this.drawTerminalText (ctx!, i, 32, 
                 packages[i].totalDownloads.toString())
         }
-        let series = packages.map(p => p.versions.map(v => v.downloads));
+        let series = packages
+            .map(p => p.versions
+            .map(v => <[string, number]>[v.version, v.downloads]));
         await this.drawLineGraphs(ctx, series);
         await super.render();
     }
@@ -55,5 +57,43 @@ export class NugetDisplay extends Display {
             return [];
         let resp = await res.json();
         return resp['data'] as Package[];
+    }
+
+    protected async drawAxis(ctx: CanvasRenderingContext2D) {
+        let w = this.canvas.width - 3;
+        let h = canvasHeight - 3;
+        ctx.beginPath();
+        ctx.moveTo(0, 2);
+        ctx.lineTo(2, 0);
+        ctx.lineTo(4, 2);
+        ctx.moveTo(2, 0);
+        ctx.lineTo(2, h);
+        ctx.lineTo(w, h);
+        ctx.lineTo(w - 2, h - 2);
+        ctx.moveTo(w, h);
+        ctx.lineTo(w - 2, h + 2);
+        ctx.stroke();
+    }
+
+    protected async drawLineGraphs(ctx: CanvasRenderingContext2D,
+        series: [string, number][][]) {
+        let maxx = Math.max(...series.map(s => s.length));
+        let dx = this.canvas.width / maxx;
+        let maxvals = series.map(s => Math.max(...s.map (t => t[1])));
+        let maxy = Math.max(...maxvals);
+        let scaley = canvasHeight * 0.75 / maxy;
+        for (let i = 0; i < series.length; i++) {
+            ctx.beginPath();
+            ctx.moveTo(0, canvasHeight - (series[i][0][1] * scaley));
+            await this.delay(msInSec);
+            for (let j = 0; j < series[i].length; j++) {
+                let [label, value] = series[i][j];
+                let x = j * dx;
+                let y = canvasHeight - (value * scaley);
+                ctx.lineTo(x, y);
+                ctx.fillText(label, x, y);
+            }
+            ctx.stroke();
+        }
     }
 }
