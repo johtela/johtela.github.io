@@ -29,11 +29,14 @@ export class NugetDisplay extends Display {
         if (packages.length == 0) return;
         this.setCtxStyle(ctx);
         this.clearCtx(ctx);
+        this.drawAxis(ctx);
         for (let i = 0; i < packages.length; i++) {
-            await this.drawTerminalText(ctx!, i, 0, packages[i].id)
+            await this.drawTerminalText(ctx!, i, 1, packages[i].id)
             await this.drawTerminalText (ctx!, i, 32, 
                 packages[i].totalDownloads.toString())
         }
+        let series = packages.map(p => p.versions.map(v => v.downloads));
+        await this.drawLineGraphs(ctx, series);
         await super.render();
     }
 

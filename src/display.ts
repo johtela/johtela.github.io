@@ -1,15 +1,17 @@
 import * as $ from 'jquery';
 
-export class Display {
-    protected readonly msInSec: number = 1000;
-    protected readonly msInMin: number = this.msInSec * 60;
+const canvasHeight = 222;
+const msInSec = 1000;
+const msInMin = msInSec * 60;
 
+export class Display {
     private content: HTMLElement;
     protected canvas: HTMLCanvasElement;
 
     public constructor(content: HTMLElement) {
         this.content = content;
         this.canvas = $('<canvas>')[0] as HTMLCanvasElement;
+        this.canvas.height = canvasHeight;
     }
 
     protected delay(ms: number): Promise<number> {
@@ -21,29 +23,64 @@ export class Display {
     }
 
     protected setCtxStyle(ctx: CanvasRenderingContext2D) {
-        ctx.font = "12px Lekton";
-        ctx.fillStyle = "#FFF";
+        ctx.font = "15px Lekton";
+        ctx.fillStyle = "#DDD";
         ctx.strokeStyle = "#FFF";
     }
 
-    protected async drawTerminalText (ctx: CanvasRenderingContext2D, 
+    protected async drawTerminalText(ctx: CanvasRenderingContext2D,
         row: number, column: number, text: string) {
-        let x = column * 8;
-        let y = (row + 1) * 12;
-        await this.delay(this.msInSec);
+        let x = column * 10;
+        let y = (row + 1) * 17;
+        await this.delay(msInSec);
         ctx.fillText(text.toUpperCase(), x, y);
     }
 
+    protected async drawAxis(ctx: CanvasRenderingContext2D) {
+        let w = this.canvas.width - 3;
+        let h = canvasHeight - 3;
+        ctx.beginPath();
+        ctx.moveTo(0, 2);
+        ctx.lineTo(2, 0);
+        ctx.lineTo(4, 2);
+        ctx.moveTo(2, 0);
+        ctx.lineTo(2, h);
+        ctx.lineTo(w, h);
+        ctx.lineTo(w - 2, h - 2);
+        ctx.moveTo(w, h);
+        ctx.lineTo(w - 2, h + 2);
+        ctx.stroke();
+    }
+
+    protected async drawLineGraphs(ctx: CanvasRenderingContext2D,
+        series: number[][]) {
+        let maxx = Math.max(...series.map(s => s.length));
+        let dx = this.canvas.width / maxx;
+        let maxvals = series.map(s => Math.max(...s));
+        let maxy = Math.max(...maxvals);
+        let scaley = canvasHeight / maxy;
+        for (let i = 0; i < series.length; i++) {
+            ctx.beginPath();
+            ctx.moveTo(0, canvasHeight - (series[i][0] * scaley));
+            await this.delay(msInSec);
+            for (let j = 0; j < series[i].length; j++) {
+                ctx.lineTo(j * dx, canvasHeight - (series[i][j] * scaley))
+            }
+            ctx.stroke();
+        }
+    }
+
     protected async render() {
-        await this.delay(15 * this.msInSec);
+        await this.delay(15 * msInSec);
     }
 
     public async run() {
         while (true) {
-            let wait = Math.random() * this.msInSec;
+            let wait = Math.random() * msInSec * 5;
             await this.delay(wait);
             let cont = $(this.content);
             await this.flickerEffect(cont);
+            this.canvas.width = this.content.clientWidth;
             cont.replaceWith(this.canvas);
             await this.render();
             $(this.canvas).replaceWith(this.content);
