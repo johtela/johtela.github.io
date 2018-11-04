@@ -230,7 +230,7 @@ canvas {
     }
 }
 
-@media only screen and (max-width:520px) {
+@media only screen and (max-width:640px) {
     .left-pane, .right-pane, .buttonpane {
         width:100%;
         padding: 16px 8px 0px 8px;
