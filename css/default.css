@@ -18,7 +18,7 @@ body {
     text-shadow: 0 0 32px #f66; 
 }
 .title h1 {
-    font-size: 72px;
+    font-size: 68px;
     font-style: normal;
     font-weight: 300;
     letter-spacing: 8px;
@@ -233,5 +233,11 @@ canvas {
     .left-pane, .right-pane, .buttonpane {
         width:100%;
         padding: 16px 64px 0px 64px;
+    }
+}
+@media only screen and (max-width:480px) {
+    .left-pane, .right-pane, .buttonpane {
+        width:100%;
+        padding: 16px 8px 0px 8px;
     }
 }
