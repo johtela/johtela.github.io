@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<title>CSS 3D Scene Editor</title>
+<meta name=apple-mobile-web-app-capable content=yes><!-- yes? -->
+<meta name=apple-mobile-web-app-status-bar-style content=black>
+<meta name=viewport content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
+
+<input id=toggle type=checkbox accesskey=s>
+
+<label for=toggle>≡</label><!-- Toggle sidebar -->
+
+<header>
+  <input type=button value=Top>
+  <input type=button value=Left>
+  <input type=button value=Front>
+  <input type=button value=Right>
+  <label>
+    <span>Perspective</span>
+    <input type=range min=0 max=1000 step=1 value=100>
+  </label>
+</header>
+
+<aside>
+  <div>
+    <span>Add</span>
+    <input type=button value=Plane>
+    <input type=button value=Sprite>
+    <input type=button value=Cube>
+  </div>
+  <div>
+    <span>Edit</span>
+    <label>
+      <span>W</span>
+      <input type=number name=w min=0 value=0>
+    </label>
+    <label>
+      <span>H</span>
+      <input type=number name=h min=0 value=0>
+    </label>
+  </div>
+  <div id=texture>
+    <span>Texture</span>
+    <input type=radio name=tex value=lava>
+    <input type=radio name=tex value=stone>
+    <input type=radio name=tex value=glass>
+    <input type=radio name=tex value=grass>
+    <input type=radio name=tex value=wood><!-- use value to load corresponding image -->
+  </div>
+  <label>
+    <span>Color</span>
+    <input type=color value=#ffffff>
+  </label>
+  <label>
+    <span>X</span>
+    <input type=number name=x value=0>
+  </label>
+  <label>
+    <span>Y</span>
+    <input type=number name=y value=0>
+  </label>
+  <label>
+    <span>Z</span>
+    <input type=number name=z value=0>
+  </label>
+  <label>
+    <span>rot X</span>
+    <input type=number name=rx value=0>
+  </label>
+  <label>
+    <span>rot Y</span>
+    <input type=number name=ry value=0>
+  </label>
+  <label>
+    <span>rot Z</span>
+    <input type=number name=rz value=0>
+  </label>
+</aside>
+
+<main>
+  <!-- 3D view -->
+  <div id=center>
+  <div id=grid></div>
+  </div>
+</main>
+
+<style>
+  * {
+    box-sizing: border-box;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform-style: preserve-3d;
+    font-kerning: auto;
+    outline: none;
+  }
+  ::-moz-selection {
+    color: white;
+    text-shadow: #f70 1px 1px 0;
+    background-color: #fc0;
+  }
+  ::-webkit-selection {
+    color: white;
+    text-shadow: #f70 1px 1px 0;
+    background-color: #fc0;
+  }
+  ::selection {
+    color: white;
+    text-shadow: #07f 1px 1px 0;
+    background-color: #fc0;
+  }
+  html,body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: white;
+    background: black;
+    font-size: 10pt;
+    line-height: 1;
+    font-weight: 400;
+    font-family: sans-serif;
+    -webkit-text-size-adjust: 100%;
+  }
+  [type=button],[type=color],[type=number] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: auto;
+    background: transparent;
+    color: currentColor;
+    border: 1px solid currentColor;
+    border-radius: .2em;
+    font-size: 12pt;
+    padding: .25em .5em;
+    cursor: pointer;
+    transition: color .2s ease-in-out,
+                border-color .2s ease-in-out;
+  }
+  [type=button] + [type=button] {
+    margin-left: .5em;
+  }
+  [type=button]:hover,
+  [type=color]:hover,
+  [type=number]:hover {
+    color: #0cf;
+  }
+  [type=button]:active,
+  [type=color]:focus,
+  [type=number]:focus {
+    color: #fc0;
+  }
+  [type=color] {
+    widtH: 100%;
+  }
+  header,aside,[for=toggle],#toggle,aside div label span,aside #texture ~ label span {
+    position: absolute;
+    z-index: 50;
+    top: 0;
+  }
+  header {
+    left: 0;
+    width: 100%;
+    padding: 0 2.5em .5em .5em;
+    background: rgba(0,0,0,.7);
+    transition: width .2s ease-in-out;
+  }
+  header input {
+    margin-top: .5em;
+  }
+  header label {
+    display: block;
+    padding: .5em;
+  }
+  header span {
+    font-size: 12pt;
+  }
+  [type=range] {
+    margin-left: .5em;
+  }
+  aside,[for=toggle] {
+    transition: right .2s ease-in-out;
+  }
+  aside {
+    right: -300px;
+    width: 300px;
+    height: 100%;
+    padding: 0 1em;
+    background: rgba(0,0,0,.7);
+  }
+  aside {
+    overflow-y: scroll;
+  }
+  aside label,
+  aside div {
+    margin: 1.5em .5em;
+    display: block;
+    position: relative;
+  }
+  aside div label {
+    margin: 0;
+    position: relative;
+  }
+  aside label,
+  aside #texture ~ div {
+    padding-left: 75px;
+  }
+  aside span {
+    display: block;
+    left: 0;
+    margin: 0 0 1em 0;
+    font-size: 12pt;
+    font-weight: 600;
+  }
+  aside div label {
+    margin-bottom: .5em;
+  }
+  aside #texture ~ label span {
+    top: .25em;
+  }
+  aside div label span {
+    top: .25em;
+    font-weight: 400;
+  }
+  #texture ~ label span {
+    top: 1em;
+  }
+  [type=color],[type=number] {
+    max-width: 100%;
+  }
+  [for=toggle] {
+    top: 0;
+    right: .25em;
+    font-size: 28pt;
+    color: currentColor;
+    cursor: pointer;
+    z-index: 75;
+  }
+  [for=toggle]:hover {
+    color: #0cf;
+  }
+  #toggle {
+    display: none;
+  }
+  #toggle:checked ~ header {
+    width: calc(100% - 300px);
+  }
+  #toggle:checked ~ [for=toggle] {
+    right: calc(300px + .25em);
+  }
+  #toggle:checked ~ aside {
+    right: 0;
+  }
+  main {
+    background: #333;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    cursor: move;
+    vertical-align: top;
+    perspective: 900px;
+    overflow: hidden;
+  }
+  #center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+  #grid {
+    width: 803px;
+    height: 803px;
+    background-image:
+      linear-gradient(#ccc 3px, transparent 3px),
+      linear-gradient(90deg, #ccc 3px, transparent 3px);
+    background-size:100px 100px, 100px 100px;
+    transform-origin: center center;
+    transform:
+      translateX(-50%)
+      translateY(-50%)
+      rotateX(60deg); 
+    position: absolute;
+  }
+  @media (min-width: 600px) {
+    header label {
+      display: inline-block;
+    }
+  }
+</style>

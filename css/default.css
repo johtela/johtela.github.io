@@ -8,6 +8,15 @@ body {
 
 /* Title pane */
 
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to { 
+        opacity: 1;
+    }
+}
+
 .title {
     padding: 4px;
     text-align: center;
@@ -23,6 +32,8 @@ body {
     font-weight: 300;
     letter-spacing: 8px;
     text-transform: uppercase;
+    opacity: 0;
+    animation: fade-in 3s ease 1s 1 forwards;
 }
 .title h3 {
     font-size: 28px;
@@ -30,6 +41,8 @@ body {
     font-weight: 300;
     letter-spacing: 4px;
     padding-bottom: 10px;
+    opacity: 0;
+    animation: fade-in 3s ease 4s 1 forwards;
 }
 
 /* Rows and left/middle/right panes */
@@ -37,6 +50,8 @@ body {
 .row {
     text-transform: uppercase;
     overflow: auto;
+    opacity: 0;
+    animation: fade-in 1s ease 7s 1 forwards;
 }
 .left-pane {
     padding: 0px 48px 16px 128px;
