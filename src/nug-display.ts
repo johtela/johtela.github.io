@@ -32,7 +32,7 @@ export class NugetDisplay extends Display {
         this.drawAxis(ctx);
         for (let i = 0; i < packages.length; i++) {
             await this.drawTerminalText(ctx!, i, 1, packages[i].id)
-            await this.drawTerminalText (ctx!, i, 32, 
+            await this.drawTerminalText (ctx!, i, 31, 
                 packages[i].totalDownloads.toString())
         }
         let series = packages
