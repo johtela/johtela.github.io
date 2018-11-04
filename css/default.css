@@ -226,13 +226,6 @@ canvas {
 @media only screen and (max-width:768px) {
     .left-pane, .right-pane, .buttonpane {
         width:100%;
-        padding: 16px 64px 0px 64px;
-    }
-}
-
-@media only screen and (max-width:640px) {
-    .left-pane, .right-pane, .buttonpane {
-        width:100%;
         padding: 16px 8px 0px 8px;
     }
 }
