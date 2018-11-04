@@ -148,9 +148,9 @@ body {
     width: 20%;
     margin: 8px 0 0 0;
     padding: 0px 16px;
-    background-image: linear-gradient(-45deg, #000, #111, #000);
+    background-image: linear-gradient(-45deg, #080808, #181818, #080808);
     border-radius: 8px;
-    box-shadow: 0px 0px 8px #111;
+    box-shadow: 0px 0px 8px #181818;
     font-family: 'Michroma', sans-serif;
     font-size: 12px;
     text-align: center;
@@ -166,7 +166,7 @@ body {
     font-size: 12px;
     font-style: normal;
     font-weight: 900;
-    background-image: linear-gradient(45deg, #000, #111);
+    background-image: linear-gradient(45deg, #080808, #181818);
 }
 
 .button {
