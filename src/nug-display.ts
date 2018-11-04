@@ -30,15 +30,8 @@ export class NugetDisplay extends Display {
         this.setCtxStyle(ctx);
         this.clearCtx(ctx);
         this.drawAxis(ctx);
-        for (let i = 0; i < packages.length; i++) {
-            await this.drawTerminalText(ctx!, i, 1, packages[i].id)
-            await this.drawTerminalText (ctx!, i, 31, 
-                packages[i].totalDownloads.toString())
-        }
-        let series = packages
-            .map(p => p.versions
-            .map(v => <[string, number]>[v.version, v.downloads]));
-        await this.drawLineGraphs(ctx, series);
+        await this.drawLegend(ctx, packages);
+        await this.drawLineGraphs(ctx, packages);
         await super.render();
     }
 
@@ -59,7 +52,7 @@ export class NugetDisplay extends Display {
         return resp['data'] as Package[];
     }
 
-    protected async drawAxis(ctx: CanvasRenderingContext2D) {
+    protected drawAxis(ctx: CanvasRenderingContext2D) {
         let w = this.canvas.width - 3;
         let h = canvasHeight - 3;
         ctx.beginPath();
@@ -75,23 +68,32 @@ export class NugetDisplay extends Display {
         ctx.stroke();
     }
 
+    private async drawLegend(ctx: CanvasRenderingContext2D,
+        packages: Package[]) {
+        for (let i = 0; i < packages.length; i++) {
+            await this.drawTerminalText(ctx!, i, 1, packages[i].id);
+            await this.drawTerminalText(ctx!, i, 31, packages[i].totalDownloads.toString());
+        }
+    }
+
     protected async drawLineGraphs(ctx: CanvasRenderingContext2D,
-        series: [string, number][][]) {
-        let maxx = Math.max(...series.map(s => s.length));
+        packages: Package[]) {
+        let maxx = Math.max(...packages.map(p => p.versions.length));
         let dx = this.canvas.width / maxx;
-        let maxvals = series.map(s => Math.max(...s.map (t => t[1])));
+        let maxvals = packages.map(p => Math.max(...p.versions.map (v => v.downloads)));
         let maxy = Math.max(...maxvals);
         let scaley = canvasHeight * 0.75 / maxy;
-        for (let i = 0; i < series.length; i++) {
+        for (let i = 0; i < packages.length; i++) {
+            let pkg = packages[i];
             ctx.beginPath();
-            ctx.moveTo(0, canvasHeight - (series[i][0][1] * scaley));
+            ctx.moveTo(0, canvasHeight - (pkg.versions[0].downloads * scaley));
             await this.delay(msInSec);
-            for (let j = 0; j < series[i].length; j++) {
-                let [label, value] = series[i][j];
+            for (let j = 0; j < pkg.versions.length; j++) {
+                let pver = pkg.versions[j];
                 let x = j * dx;
-                let y = canvasHeight - (value * scaley);
+                let y = canvasHeight - (pver.downloads * scaley);
                 ctx.lineTo(x, y);
-                ctx.fillText(label, x, y);
+                ctx.fillText(pver.version, x, y);
             }
             ctx.stroke();
         }

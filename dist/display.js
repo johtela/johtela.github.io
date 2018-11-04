@@ -7,26 +7,47 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import * as $ from 'jquery';
+export const canvasHeight = 222;
+export const msInSec = 1000;
+export const msInMin = msInSec * 60;
 export class Display {
     constructor(content) {
         this.content = content;
         this.canvas = $('<canvas>')[0];
+        this.canvas.height = canvasHeight;
     }
     delay(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
+    clearCtx(ctx) {
+        ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+    setCtxStyle(ctx) {
+        ctx.font = "15px Lekton";
+        ctx.fillStyle = "#DDD";
+        ctx.strokeStyle = "#DDD";
+    }
+    drawTerminalText(ctx, row, column, text) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let x = column * 10;
+            let y = (row + 1) * 17;
+            yield this.delay(msInSec);
+            ctx.fillText(text.toUpperCase(), x, y);
+        });
+    }
     render() {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.delay(15000);
+            yield this.delay(15 * msInSec);
         });
     }
     run() {
         return __awaiter(this, void 0, void 0, function* () {
             while (true) {
-                let wait = Math.random() * 60000;
+                let wait = Math.random() * msInMin;
                 yield this.delay(wait);
                 let cont = $(this.content);
                 yield this.flickerEffect(cont);
+                this.canvas.width = this.content.clientWidth;
                 cont.replaceWith(this.canvas);
                 yield this.render();
                 $(this.canvas).replaceWith(this.content);
