@@ -223,21 +223,9 @@ canvas {
         padding: 0px 16px 16px 16px;
     }
 }
-@media only screen and (max-width:750px) {
-    .left-pane, .right-pane, .buttonpane {
-        width:100%;
-        padding: 16px 128px 0px 128px;
-    }
-}
-@media only screen and (max-width:600px) {
+@media only screen and (max-width:768px) {
     .left-pane, .right-pane, .buttonpane {
         width:100%;
         padding: 16px 64px 0px 64px;
-    }
-}
-@media only screen and (max-width:480px) {
-    .left-pane, .right-pane, .buttonpane {
-        width:100%;
-        padding: 16px 8px 0px 8px;
     }
 }
