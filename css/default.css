@@ -20,7 +20,7 @@ body {
 .title {
     padding: 4px;
     text-align: center;
-    font-family: Montserrat, Gill Sans, Gill Sans MT, Calibri, sans-serif;
+    font-family: Montserrat;
     background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/HAL9000.svg/256px-HAL9000.svg.png);
     background-position: center;
     background-repeat: no-repeat;
@@ -29,7 +29,7 @@ body {
 .title h1 {
     font-size: 68px;
     font-style: normal;
-    font-weight: 300;
+    font-weight: 400;
     letter-spacing: 8px;
     text-transform: uppercase;
     opacity: 0;
@@ -39,7 +39,7 @@ body {
 .title h3 {
     font-size: 28px;
     font-style: normal;
-    font-weight: 300;
+    font-weight: 400;
     letter-spacing: 4px;
     padding-bottom: 10px;
     opacity: 0;
@@ -214,10 +214,10 @@ body {
 .footer {
     color: #AAA;
     text-align: center;
-    font-family: Montserrat, Gill Sans, Gill Sans MT, Calibri, sans-serif;
+    font-family: Montserrat;
     font-size: 16px;
     font-style: normal;
-    font-weight: 300;
+    font-weight: 400;
     letter-spacing: 2px;
     padding-top: 8px;
     padding-bottom: 4px;
