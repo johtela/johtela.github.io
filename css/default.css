@@ -20,7 +20,7 @@ body {
 .title {
     padding: 4px;
     text-align: center;
-    font-family: Gill Sans, Gill Sans MT, Calibri, sans-serif;
+    font-family: Montserrat, Gill Sans, Gill Sans MT, Calibri, sans-serif;
     background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/HAL9000.svg/256px-HAL9000.svg.png);
     background-position: center;
     background-repeat: no-repeat;
@@ -34,6 +34,7 @@ body {
     text-transform: uppercase;
     opacity: 0;
     animation: fade-in 3s ease 1s 1 forwards;
+    text-shadow: 0 0 16px #f44; 
 }
 .title h3 {
     font-size: 28px;
@@ -43,6 +44,7 @@ body {
     padding-bottom: 10px;
     opacity: 0;
     animation: fade-in 3s ease 4s 1 forwards;
+    text-shadow: 0 0 32px #f66; 
 }
 
 /* Rows and left/middle/right panes */
@@ -212,7 +214,7 @@ body {
 .footer {
     color: #AAA;
     text-align: center;
-    font-family: Gill Sans, Gill Sans MT, Calibri, sans-serif;
+    font-family: Montserrat, Gill Sans, Gill Sans MT, Calibri, sans-serif;
     font-size: 16px;
     font-style: normal;
     font-weight: 300;
