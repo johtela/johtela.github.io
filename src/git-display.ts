@@ -1,5 +1,5 @@
 import { canvasHeight, msInSec, Display } from './display';
-import { fetchYears } from './github-contrib';
+import { fetchEvents } from './github-contrib';
 
 export class GithubDisplay extends Display {
     private username: string;
@@ -10,6 +10,6 @@ export class GithubDisplay extends Display {
     }
 
     protected async render() {
-        let data = await fetchYears('johtela');
+        let data = await fetchEvents(this.username);
     }
 }
