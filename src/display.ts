@@ -42,7 +42,7 @@ export class Display {
 
     public async run() {
         while (true) {
-            let wait = Math.random() * msInMin;
+            let wait = Math.random() * msInMin * 0.1;
             await this.delay(wait);
             let cont = $(this.content);
             await this.flickerEffect(cont);
