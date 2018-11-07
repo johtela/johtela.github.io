@@ -3,6 +3,9 @@ import * as $ from 'jquery';
 export const canvasHeight = 222;
 export const msInSec = 1000;
 export const msInMin = msInSec * 60;
+export const msInHour = msInMin * 60;
+export const msInDay = msInHour * 24;
+export const msInWeek = msInDay * 7;
 
 export class Display {
     private content: HTMLElement;
