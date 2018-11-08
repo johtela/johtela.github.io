@@ -1,6 +1,13 @@
+import { msInDay } from "./display";
+
 interface Event {
 	type: string;
 	created_at: string;
+}
+
+export interface Contrib {
+	day: Date;
+	count: number;
 }
 
 function DatePart(d: Date): string {
@@ -8,7 +15,7 @@ function DatePart(d: Date): string {
 }
 
 export async function fetchEvents(username: string) {
-	let resp = await fetch(`https://api.github.com/users/${username}/events`);
+	let resp = await fetch(`https://api.github.com/users/${username}/events?per_page=100`);
 	let res: { [date: string]: number | undefined } = {};
 	if (!resp.ok)
 		return res;
@@ -18,5 +25,23 @@ export async function fetchEvents(username: string) {
 		let count = res[date];
 		res[date] = count === undefined ? 1 : count + 1;
 	});
+	return res;
+}
+
+export async function contribHistory(username: string): 
+	Promise<Contrib[]> {
+	let today = Math.trunc (Date.now() / msInDay) * msInDay;
+	let events = await fetchEvents(username);
+	let res = new Array<Contrib>(90);
+	let day = today - (89 * msInDay);
+	for (let i = 0; i < res.length; i++) {
+		let d = new Date(day);
+		let c = events[DatePart(d)] || 0;
+		res[i] = {
+			day: d,
+			count: c
+		};
+		day += msInDay;
+	}
 	return res;
 }
