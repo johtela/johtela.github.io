@@ -1,9 +1,10 @@
 import * as $ from 'jquery';
 import { Display } from './display';
 import { NugetDisplay } from './nug-display';
+import { GithubDisplay } from './git-display';
 let displayMap = {
     nuget: (e) => new NugetDisplay(e, "Tommi Johtela"),
-    git: (e) => new Display(e),
+    git: (e) => new GithubDisplay(e, "johtela"),
     linkedin: (e) => new Display(e)
 };
 function animateMonitors() {

@@ -55,7 +55,7 @@ export class GithubDisplay extends Display {
         await this.drawLabel(ctx, row++, "open issues:", oi);
         let wc = repos.reduce((cnt, r) => r.watchers + cnt, 0);
         await this.drawLabel(ctx, row++, "watchers:", wc);
-        let fc = repos.reduce((cnt, r) => r.forks + cnt, 0);
+        let fc = repos.reduce((cnt, r)  => r.forks + cnt, 0);
         await this.drawLabel(ctx, row++, "forks:", fc);
     }
 

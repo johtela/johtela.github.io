@@ -1,4 +1,3 @@
-import * as $ from 'jquery';
 import { Display } from './display';
 import { NugetDisplay } from './nug-display';
 import { GithubDisplay } from './git-display'
@@ -10,11 +9,12 @@ let displayMap = {
 }
 
 function animateMonitors() {
-    $(".monitor-content")
-        .map((i, e) => displayMap[e.id](e))
-        .each((i, d) => {
-            d.run();
-        });
+    var monitors = document.body.getElementsByClassName("monitor-content");
+    for (let i = 0; i < monitors.length; i++) {
+        let e = monitors[i];
+        let d = displayMap[e.id](e);
+        d.run();
+    }
 }
 
-$(document).ready(animateMonitors)
+document.addEventListener("DOMContentLoaded", animateMonitors);

@@ -9,10 +9,7 @@
   },
   "author": "Tommi Johtela",
   "license": "ISC",
-  "dependencies": {
-    "@types/jquery": "^3.3.22",
-    "jquery": "^3.3.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "ts-loader": "^5.3.0",
     "typescript": "^3.1.4",

@@ -6,14 +6,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import * as $ from 'jquery';
 export const canvasHeight = 222;
 export const msInSec = 1000;
 export const msInMin = msInSec * 60;
+export const msInHour = msInMin * 60;
+export const msInDay = msInHour * 24;
+export const msInWeek = msInDay * 7;
+const defaultFont = "15px Lekton";
+const defaultColor = "#DDD";
 export class Display {
     constructor(content) {
         this.content = content;
-        this.canvas = $('<canvas>')[0];
+        this.canvas = document.createElement("canvas");
         this.canvas.height = canvasHeight;
     }
     delay(ms) {
@@ -23,16 +27,27 @@ export class Display {
         ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
     setCtxStyle(ctx) {
-        ctx.font = "15px Lekton";
-        ctx.fillStyle = "#DDD";
-        ctx.strokeStyle = "#DDD";
+        ctx.font = defaultFont;
+        ctx.fillStyle = defaultColor;
+        ctx.strokeStyle = defaultColor;
     }
     drawTerminalText(ctx, row, column, text) {
         return __awaiter(this, void 0, void 0, function* () {
-            let x = column * 10;
-            let y = (row + 1) * 17;
+            let { x, y } = this.charPosToXY(column, row);
             yield this.delay(msInSec);
             ctx.fillText(text.toUpperCase(), x, y);
+        });
+    }
+    charPosToXY(column, row) {
+        let x = column * 10;
+        let y = (row + 1) * 17;
+        return { x, y };
+    }
+    drawBigText(ctx, row, column, size, text) {
+        return __awaiter(this, void 0, void 0, function* () {
+            ctx.font = `${size}px Lekton`;
+            this.drawTerminalText(ctx, row, column, text);
+            ctx.font = defaultFont;
         });
     }
     render() {
@@ -43,14 +58,13 @@ export class Display {
     run() {
         return __awaiter(this, void 0, void 0, function* () {
             while (true) {
-                let wait = Math.random() * msInMin;
+                let wait = Math.random() * msInSec * 30 + (msInSec * 15);
                 yield this.delay(wait);
-                let cont = $(this.content);
-                yield this.flickerEffect(cont);
+                yield this.flickerEffect(this.content);
                 this.canvas.width = this.content.clientWidth;
-                cont.replaceWith(this.canvas);
+                this.content.replaceWith(this.canvas);
                 yield this.render();
-                $(this.canvas).replaceWith(this.content);
+                this.canvas.replaceWith(this.content);
             }
         });
     }
@@ -64,7 +78,8 @@ export class Display {
     flicker(cont, cls, ms) {
         return __awaiter(this, void 0, void 0, function* () {
             var cssClass = 'flicker-' + cls;
-            cont.toggleClass(cssClass);
+            cont.class;
+            toggleClass(cssClass);
             yield this.delay(ms);
             cont.toggleClass(cssClass);
         });
