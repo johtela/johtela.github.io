@@ -10,6 +10,13 @@ export interface Contrib {
 	count: number;
 }
 
+export interface Repo {
+	name: string;
+	open_issues: number;
+	watchers: number;
+	forks: number;
+}
+
 function DatePart(d: Date): string {
 	return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
 }
@@ -26,6 +33,14 @@ export async function fetchEvents(username: string) {
 		res[date] = count === undefined ? 1 : count + 1;
 	});
 	return res;
+}
+
+export async function fetchRepos(username: string) {
+	let resp = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
+	let res: Repo[] = [];
+	if (!resp.ok)
+		return res;
+	return await resp.json() as Repo[];
 }
 
 export async function contribHistory(username: string): 
