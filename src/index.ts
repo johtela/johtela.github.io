@@ -1,10 +1,13 @@
 import { Display } from './display';
 import { NugetDisplay } from './nug-display';
-import { GithubDisplay } from './git-display'
+import { GithubDisplay } from './git-display';
+import { AppveyorDisplay } from './apv-display';
 
 let displayMap = {
     nuget: (e: HTMLElement) => new NugetDisplay(e, "Tommi Johtela"),
     git: (e: HTMLElement) => new GithubDisplay(e, "johtela"),
+    appveyor: (e: HTMLElement) => new AppveyorDisplay(e, "johtela", 
+        ["extensioncord", "linqcheck", "literatecs"]),
     linkedin: (e: HTMLElement) => new Display(e)
 }
 

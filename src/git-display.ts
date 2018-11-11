@@ -14,6 +14,9 @@ export class GithubDisplay extends Display {
         this.username = username;
     }
 
+    /**
+     * Render the Git display.
+     */
     protected async render() {
         let ctx = this.canvas.getContext("2d")
         if (!ctx) return;

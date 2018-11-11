@@ -44,11 +44,20 @@ export class Display {
 		return { x, y };
 	}
 
-	protected async drawBigText(ctx: CanvasRenderingContext2D,
-		row: number, column: number, size: number, text: string) {
-		ctx.font = `${size}px Lekton`;
-		this.drawTerminalText(ctx, row, column, text);		
+	protected async drawHighlightedText(ctx: CanvasRenderingContext2D,
+		row: number, column: number, font: string, fontsize: number, text: string,
+		highlighted: boolean) {
+		ctx.font = `${fontsize}px ${font}`;
+		let utext = text.toUpperCase();
+		let { width } = ctx.measureText(utext);
+		let { x, y } = this.charPosToXY(column, row);
+		await this.delay(msInSec);
+		if (highlighted)
+			ctx.lineWidth = 3;
+		ctx.strokeRect(x - 2, y - fontsize, width + 4, fontsize + 4);
+		ctx.fillText(utext, x, y + 1);
 		ctx.font = defaultFont;
+		ctx.lineWidth = 1;
 	}
 
 	protected async render() {
