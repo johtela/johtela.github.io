@@ -1,20 +1,23 @@
 {
-  "name": "johtela.github.io",
-  "version": "1.0.0",
-  "description": "Tommi Johtela personal homepage",
-  "private": true,
-  "scripts": {
-	"test": "echo \"Error: no test specified\" && exit 1",
-	"watch": "webpack --watch",
-	"build": "webpack"
-  },
-  "author": "Tommi Johtela",
-  "license": "ISC",
-  "dependencies": {},
-  "devDependencies": {
-	"ts-loader": "^5.3.0",
-	"typescript": "^3.1.4",
-	"webpack": "^4.23.1",
-	"webpack-cli": "^3.1.2"
-  }
+ "name": "johtela.github.io",
+ "version": "1.0.0",
+ "description": "Tommi Johtela personal homepage",
+ "private": true,
+ "scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "watch": "webpack --watch",
+  "build": "webpack"
+ },
+ "author": "Tommi Johtela",
+ "license": "ISC",
+ "dependencies": {
+  "three": "^0.99.0"
+ },
+ "devDependencies": {
+  "@types/three": "^0.93.10",
+  "ts-loader": "^5.3.0",
+  "typescript": "^3.1.4",
+  "webpack": "^4.23.1",
+  "webpack-cli": "^3.1.2"
+ }
 }
