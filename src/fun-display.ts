@@ -10,7 +10,6 @@ export class FunDisplay extends Display {
     private geometry: THREE.WireframeGeometry;
     private material: THREE.Material;
     private lines: THREE.Line;
-    private start: number | null;
 
     constructor(content: HTMLElement) {
         super(content);
@@ -20,7 +19,7 @@ export class FunDisplay extends Display {
         this.camera.position.set(0, 0, 2);
         this.camera.lookAt(0, 0, 0);
 
-        this.geometry = new THREE.WireframeGeometry (new THREE.BoxGeometry(1, 1, 1));
+        this.geometry = new THREE.WireframeGeometry (new THREE.IcosahedronGeometry(1));
         this.material = new THREE.LineBasicMaterial({ color: 0xffffff });
         this.lines = new THREE.LineSegments(this.geometry, this.material);
         this.scene.add(this.lines);
@@ -42,7 +41,7 @@ export class FunDisplay extends Display {
         active.lines.rotation.x += 0.01;
         active.lines.rotation.y += 0.01;
         active.renderer.render(active.scene, active.camera);
-        if (active.lines.rotation.y < 10 * Math.PI)
+        if (active.lines.rotation.y < 5 * Math.PI)
             requestAnimationFrame(active.animate);
         else
             active = null;
