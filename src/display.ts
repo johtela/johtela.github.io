@@ -66,7 +66,7 @@ export class Display {
 
 	public async run() {
 		while (true) {
-			let wait = Math.random() * msInSec * 30 + (msInSec * 15);
+			let wait = Math.random() * msInSec * 30 + (msInSec * 0);
 			await this.delay(wait);
 			await this.flickerEffect(this.content);
 			this.canvas.width = this.content.clientWidth;

@@ -1,5 +1,6 @@
 import  * as THREE from "three";
 import { canvasHeight, msInSec, Display } from './display';
+import { Mesh } from "three";
 
 let active: FunDisplay | null = null;
 
@@ -7,9 +8,9 @@ export class FunDisplay extends Display {
     private renderer: THREE.Renderer;
     private scene: THREE.Scene;
     private camera: THREE.Camera;
-    private geometry: THREE.WireframeGeometry;
-    private material: THREE.Material;
-    private lines: THREE.Line;
+    private geometry: THREE.BufferGeometry;
+    private materials: THREE.Material[];
+    private mesh: THREE.Object3D;
 
     constructor(content: HTMLElement) {
         super(content);
@@ -19,14 +20,19 @@ export class FunDisplay extends Display {
         this.camera.position.set(0, 0, 2);
         this.camera.lookAt(0, 0, 0);
 
-        this.geometry = new THREE.WireframeGeometry (new THREE.IcosahedronGeometry(1));
-        this.material = new THREE.LineBasicMaterial({ color: 0xffffff });
-        this.lines = new THREE.LineSegments(this.geometry, this.material);
-        this.scene.add(this.lines);
+        this.geometry = new THREE.IcosahedronBufferGeometry(1);
+        this.geometry.clearGroups();
+        this.geometry.addGroup( 0, Infinity, 0 );
+        this.geometry.addGroup( 0, Infinity, 1 );        
+        this.materials = [ 
+            new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0 }),
+            new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true }) ];
+        this.mesh = new Mesh(this.geometry, this.materials);
+        this.scene.add(this.mesh);
     }
 
     protected async render() {
-        this.lines.rotation.y = 0;
+        this.mesh.rotation.y = 0;
         active = this;
         requestAnimationFrame(this.animate);
         do {
@@ -38,10 +44,10 @@ export class FunDisplay extends Display {
     animate(): void {
         if (!active)
             return;
-        active.lines.rotation.x += 0.01;
-        active.lines.rotation.y += 0.01;
+        active.mesh.rotation.x += 0.01;
+        active.mesh.rotation.y += 0.01;
         active.renderer.render(active.scene, active.camera);
-        if (active.lines.rotation.y < 5 * Math.PI)
+        if (active.mesh.rotation.y < 5 * Math.PI)
             requestAnimationFrame(active.animate);
         else
             active = null;
