@@ -9,8 +9,8 @@ export class FunDisplay extends Display {
     private scene: THREE.Scene;
     private camera: THREE.Camera;
     private geometry: THREE.BufferGeometry;
-    private materials: THREE.Material[];
-    private mesh: THREE.Object3D;
+    private material: THREE.Material;
+    private mesh: THREE.Mesh;
 
     constructor(content: HTMLElement) {
         super(content);
@@ -21,13 +21,8 @@ export class FunDisplay extends Display {
         this.camera.lookAt(0, 0, 0);
 
         this.geometry = new THREE.IcosahedronBufferGeometry(1);
-        this.geometry.clearGroups();
-        this.geometry.addGroup( 0, Infinity, 0 );
-        this.geometry.addGroup( 0, Infinity, 1 );        
-        this.materials = [ 
-            new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0 }),
-            new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true }) ];
-        this.mesh = new Mesh(this.geometry, this.materials);
+        this.material = new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.FrontSide, wireframe: true });
+        this.mesh = new Mesh(this.geometry, this.material);
         this.scene.add(this.mesh);
     }
 

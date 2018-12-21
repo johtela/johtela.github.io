@@ -9,6 +9,11 @@
             "problemMatcher": [
                 "$tsc"
             ],
+            "presentation": {
+                "reveal": "silent",
+                "showReuseMessage": false,
+                "clear": true
+            },
             "group": {
                 "kind": "build",
                 "isDefault": true
